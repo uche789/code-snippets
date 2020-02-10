@@ -1,0 +1,18 @@
+{
+  "name": "javascript-utilities",
+  "version": "1.0.0",
+  "description": "Javascript code snippets",
+  "main": "index.js",
+  "author": "TheSimpleArchitect",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "babel-jest": "^25.1.0",
+    "jest": "^25.1.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
