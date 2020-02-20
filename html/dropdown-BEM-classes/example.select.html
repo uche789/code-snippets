@@ -1,0 +1,91 @@
+<div class="o-select width-300 font-family-arial">
+  <label class="o-select__label">Country</label>
+  <div class="o-select__selected">
+    <img class="o-avatar" src="de.png" /> <span>Germany</span>
+  </div>
+  <ul class="o-select__list">
+    <li class="o-select__item is-selected" onclick="setValue('DE')">
+      <img class="o-avatar" src="de.png" /> <span>Germany</span>
+    </li>
+    <li class="o-select__item" onclick="setValue('AT')">
+      <img class="o-avatar" src="at.png" /> <span>Austria</span>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .font-family-arial {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .width-300 {
+    width: 200px;
+  }
+
+  .o-select {
+    position: relative;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  .o-select__label {
+  }
+
+  .o-select__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    display: none;
+    position: absolute;
+    left: 0;
+    min-width: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,.1);
+    z-index: 100;
+    background-color: #fff;
+    max-height: 300px;
+    overflow: auto;
+  }
+
+  .o-select__list.is-visible {
+    display: block;
+  }
+
+  .o-select__selected {
+    padding: 10px 0;
+    border: 1px solid #ccc;
+  }
+
+  .o-select__item {
+    margin: 0;
+    padding: 10px 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+  }
+  .o-select__item.is-selected {
+    background-color: #ccc;
+  }
+
+  .o-avatar {
+    max-height: 20px;
+    padding: 0 10px;
+  }
+</style>
+
+<script>
+  const selectedArea = document.querySelector('.o-select__selected');
+
+  selectedArea.addEventListener('click', function toggle() {
+    const list = document.querySelector('.o-select__list');
+    if (list.classList.contains('is-visible')) {
+      list.classList.remove('is-visible');
+    } else {
+      list.classList.add('is-visible');
+    }
+  });
+
+  function setValue(value) {
+    console.log(value)
+  }
+</script>
