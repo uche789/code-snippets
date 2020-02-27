@@ -25,7 +25,6 @@ function scramble(str1, str2) {
 
 function test() {
   // Run with node
-  
   const {
     performance,
   } = require('perf_hooks');

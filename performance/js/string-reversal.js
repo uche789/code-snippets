@@ -8,7 +8,7 @@ function reverseStringSolution1(aString) {
   const length = aString.length - 1;
   let result = '';
   for (let i = length; i >= 0; i--) {
-      result += aString.charAt(i);
+    result += aString.charAt(i);
   }
   return result;
 }
@@ -21,6 +21,10 @@ function reverseStringSolution2(aString) {
   return arr.join('');
 }
 
+/*
+* WARNING: Will result in an error for long strings RangeError: Maximum call stack size exceeded because
+* of the limitations of function calls you can place on to the call stack
+*/
 function reverseStringSolution3(aString) {
   if (aString.length === 0 || aString.length === 1) return aString += '';
 
@@ -28,37 +32,22 @@ function reverseStringSolution3(aString) {
   return aString.charAt(lastIndex) + reverseStringSolution3(aString.substring(0, lastIndex));
 }
 
-function testSolution1(aString) {
-  const t1 = performance.now()
-  reverseStringSolution1(aString)
-  const t2 = performance.now()
-  console.log(`Solution 1: Completed in ${t2-t1}  milliseconds.`)
-}
 
-function testSolution2(aString) {
-  const t1 = performance.now()
-  reverseStringSolution2(aString)
-  const t2 = performance.now()
-  console.log(`Solution 2: Completed in ${t2-t1}  milliseconds.`)
-}
+//------- TESTING PERFORMANCE
 
-/*
-* WARNING: Will result in an error for long strings RangeError: Maximum call stack size exceeded because
-* of the limitations of function calls you can place on to the call stack
-*/
-function testSolution3(aString) {
+function testPerformance(data, solutionName, callback) {
   const t1 = performance.now()
-  reverseStringSolution3(aString)
+  callback(data);
   const t2 = performance.now()
-  console.log(`Solution 3: Completed in ${t2-t1}  milliseconds.`)
+  console.log(`${solutionName}: Completed in ${t2 - t1}  milliseconds.`)
 }
 
 function testShortString() {
   console.log('[Short string test] Starting....')
   const aString = 'Testing short strings';
-  testSolution1(aString);
-  testSolution2(aString);
-  testSolution3(aString);
+  testPerformance(aString, 'Solution 1', reverseStringSolution1);
+  testPerformance(aString, 'Solution 2', reverseStringSolution2);
+  testPerformance(aString, 'Solution 3', reverseStringSolution3);
   console.log('[Short string test] End')
 }
 
@@ -66,10 +55,10 @@ function testLongString() {
   const fs = require('fs')
   console.log('[Long string test] Starting....')
   fs.readFile('test-data-long-strings.txt', 'utf8', (err, data) => {
-      testSolution1(data);
-      testSolution2(data);
-      console.log('Solution 3 will throw an exception: RangeError: Maximum call stack size exceeded')
-      console.log('[Long string test] End.')
+    testPerformance(data, 'Solution 1', reverseStringSolution1);
+    testPerformance(data, 'Solution 2', reverseStringSolution2);
+    console.log('Solution 3 will throw an exception: RangeError: Maximum call stack size exceeded')
+    console.log('[Long string test] End.')
   })
 }
 

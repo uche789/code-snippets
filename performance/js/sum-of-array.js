@@ -24,6 +24,8 @@ function sumSolution2(arr) {
     return sum;
 }
 
+//------- TESTING PERFORMANCE
+
 function testPerformance(data, solutionName, callback) {
     const t1 = performance.now()
     console.log(callback(data));
